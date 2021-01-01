@@ -1,7 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net"
+)
 
 func main() {
-	fmt.Print("First program\n")
+	log.Println("First program")
+	server, error := net.Listen("tcp4", ":8088")
+	if error != nil {
+		log.Println(error.Error())
+	}
+	for {
+		server.Accept()
+	}
+	server.Close()
 }
