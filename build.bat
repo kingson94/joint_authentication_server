@@ -2,7 +2,7 @@
 
 set Task=%1
 set CurrentDir=%~dp0
-set OutputFilePath="%CurrentDir%build\comm_server.exe"
+set OutputFilePath="%CurrentDir%build\joint-authen-server"
 
 cd "%CurrentDir%src"
 if "%Task%" == "-b" (
