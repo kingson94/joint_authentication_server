@@ -1,14 +1,12 @@
 package main
 
 import (
-	http_server "src/server"
+	"src/server"
 )
 
 func main() {
-	http_server.OpenServer("", 8001)
+	server := server.Joint{}
+	server.Start()
 	for {
-		if false {
-			break
-		}
 	}
 }

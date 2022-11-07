@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package = "/protogen";
+package api;
+
+message Profile
+{
+    optional string name = 1;
+    optional string address = 2;
+    optional string dob_t = 3;
+    optional uint64 dob = 4;    // 4Y-2M-2D
+    optional string tel = 5;
+    optional string username = 6;
+    optional string password = 7;
+}
