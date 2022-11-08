@@ -1,6 +1,3 @@
-[submodule "protocol/joint_protobuf"]
-	path = protocol/joint_protobuf
-	url = git@github.com:kingson94/joint_protobuf.git
 [submodule "proto"]
 	path = proto
 	url = git@github.com:kingson94/joint_protobuf.git
