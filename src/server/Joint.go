@@ -9,13 +9,13 @@ type Joint struct {
 
 func initComponent() {
 	api_map := make(HttpIFMap)
-	server_body := HttpServer{
+	http_server := HttpServer{
 		api_map: HttpIFMap{},
 	}
 
-	ret := server_body.Init(api_map)
+	ret := http_server.Init(api_map)
 	if ret {
-		server_body.openServer("", 8001)
+		http_server.openServer("", 8001)
 		log.Println("Init http server OK")
 	} else {
 		log.Println("Init http server Failed")

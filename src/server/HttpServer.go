@@ -12,11 +12,12 @@ import (
 
 type HttpIFMap map[string]func(http.ResponseWriter, *http.Request)
 type HttpServer struct {
-	api_map HttpIFMap
+	api_map   HttpIFMap
+	serve_mux *http.ServeMux
 }
 
-func (server_body *HttpServer) Init(api_map HttpIFMap) bool {
-	server_body.api_map = api_map
+func (http_server *HttpServer) Init(api_map HttpIFMap) bool {
+	http_server.api_map = api_map
 	api_map["/"] = Welcome
 	api_map["/register/new_account"] = RegisterNewAccount
 
@@ -39,15 +40,15 @@ func (server_body *HttpServer) Init(api_map HttpIFMap) bool {
 	return true
 }
 
-func (server_body *HttpServer) openServer(host string, port int) {
-	http_server := http.NewServeMux()
+func (http_server *HttpServer) openServer(host string, port int) {
+	serve_mux := http.NewServeMux()
 
-	for ifs, cb := range server_body.api_map {
-		http_server.HandleFunc(ifs, cb)
+	for ifs, cb := range http_server.api_map {
+		serve_mux.HandleFunc(ifs, cb)
 	}
 
 	go func() {
-		err := http.ListenAndServe(host+":"+strconv.Itoa(port), http_server)
+		err := http.ListenAndServe(host+":"+strconv.Itoa(port), serve_mux)
 		log.Println("Start http server failed: ", err)
 	}()
 }
