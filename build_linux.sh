@@ -11,16 +11,3 @@ then
 	go build -o $output_file_path
 	exit 0
 fi
-
-if [ $task == "-br" ]
-then
-	go build -o $output_file_path
-	$output_file_path
-	exit 0
-fi
-
-if [ $task == "-r" ]
-then
-	$output_file_path
-	exit 0
-fi

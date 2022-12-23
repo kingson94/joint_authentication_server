@@ -16,7 +16,7 @@ type HttpServer struct {
 	serve_mux *http.ServeMux
 }
 
-func (http_server *HttpServer) Init(api_map HttpIFMap) bool {
+func (http_server *HttpServer) Init(api_map HttpIFMap) int {
 	http_server.api_map = api_map
 	api_map["/"] = Welcome
 	api_map["/register/new_account"] = RegisterNewAccount
@@ -34,10 +34,9 @@ func (http_server *HttpServer) Init(api_map HttpIFMap) bool {
 	}
 
 	msg_byte, _ := protojson.Marshal(&p)
-	log.Println(msg_byte)
 	log.Println(string(msg_byte))
 
-	return true
+	return 0
 }
 
 func (http_server *HttpServer) openServer(host string, port int) {
